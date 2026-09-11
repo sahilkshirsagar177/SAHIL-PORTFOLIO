@@ -147,8 +147,14 @@ export default function Hero({ onOpenResume, isDark }) {
               {/* Photo Frame */}
               <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-slate-200 dark:bg-slate-800 mb-4 border border-slate-200 dark:border-slate-700/60">
                 <img
-                  src={sahilPhoto}
+                  src={sahilPhoto || '/sahil.jpg'}
                   alt="Sahil Kshirsagar"
+                  loading="eager"
+                  decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/sahil.jpg';
+                  }}
                   className="w-full h-full object-cover object-center"
                 />
                 

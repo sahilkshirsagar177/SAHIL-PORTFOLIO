@@ -1,30 +1,19 @@
 import React, { useState } from 'react';
 import {
   Terminal,
-  ExternalLink,
   Calendar,
   Building2,
   CheckCircle2,
-  Layers,
-  Sparkles,
-  Flame,
-  BarChart3,
   Play,
   ArrowUpRight,
+  Sparkles,
 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 import { resumeData } from '../data/resumeData';
 import ProjectPlayground from './ProjectPlayground';
 
 export default function Projects({ isDark }) {
-  const [activeProjectTab, setActiveProjectTab] = useState('all');
-  const [showPlayground, setShowPlayground] = useState(true);
   const [selectedDemoId, setSelectedDemoId] = useState('purple-invigi-date');
-
-  const filteredProjects =
-    activeProjectTab === 'all'
-      ? resumeData.projects
-      : resumeData.projects.filter((p) => p.category === activeProjectTab);
 
   return (
     <section id="projects" className="py-20 relative">
@@ -32,99 +21,86 @@ export default function Projects({ isDark }) {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-teal-500/10 text-teal-400 border border-teal-500/30 mb-3">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>03. FEATURED WORK</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Engineering <span className="text-gradient">Projects</span>
+          <span className="text-xs font-mono uppercase tracking-wider text-teal-600 dark:text-teal-400 font-semibold mb-2">
+            03. Practical Work
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+            Featured Projects
           </h2>
-          <p className="mt-3 text-slate-400 max-w-2xl text-sm sm:text-base">
-            Hands-on full-stack software and data analysis systems built to solve real-world productivity and analytical challenges.
+          <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-2xl text-sm sm:text-base">
+            Full-stack web application engineering and data analysis systems solving real productivity and analytical problems.
           </p>
         </div>
 
-        {/* Project Filter Tabs */}
-        <div className="flex justify-center gap-2 mb-12">
-          {['all', 'Full-Stack Web App', 'Data & AI'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveProjectTab(tab)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                activeProjectTab === tab
-                  ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/20'
-                  : isDark
-                  ? 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shadow-sm'
-              }`}
-            >
-              {tab === 'all' ? 'All Projects' : tab}
-            </button>
-          ))}
-        </div>
-
         {/* Projects Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {filteredProjects.map((project) => {
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14">
+          {resumeData.projects.map((project) => {
             const isPurple = project.id === 'purple-invigi-date';
             return (
               <div
                 key={project.id}
-                className="relative rounded-3xl p-7 sm:p-8 bg-gradient-to-b from-slate-800/70 to-slate-900/90 border border-slate-700/70 backdrop-blur-xl shadow-2xl flex flex-col justify-between group hover:border-teal-500/50 transition-all duration-300"
+                className={`rounded-2xl p-7 sm:p-8 border flex flex-col justify-between transition-all ${
+                  isDark
+                    ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700 shadow-xl'
+                    : 'bg-white border-slate-200 hover:border-slate-300 shadow-md'
+                }`}
               >
                 <div>
                   {/* Top Badge & Date */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                     <span
                       className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium ${
                         isPurple
-                          ? 'bg-purple-500/15 text-purple-300 border border-purple-500/30'
-                          : 'bg-teal-500/15 text-teal-300 border border-teal-500/30'
+                          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20'
+                          : 'bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20'
                       }`}
                     >
-                      {isPurple ? <Flame className="w-3.5 h-3.5" /> : <BarChart3 className="w-3.5 h-3.5" />}
-                      <span>{project.type}</span>
+                      {project.type}
                     </span>
 
-                    <div className="flex items-center gap-1 text-xs font-mono text-slate-400">
+                    <div className="flex items-center gap-1 text-xs font-mono text-slate-500 dark:text-slate-400">
                       <Calendar className="w-3.5 h-3.5" />
                       <span>{project.timeline}</span>
                     </div>
                   </div>
 
                   {/* Project Title */}
-                  <h3 className="text-2xl font-bold text-slate-100 group-hover:text-teal-300 transition-colors mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">
                     {project.title}
                   </h3>
-                  <p className="text-xs font-mono text-teal-400 mb-4 flex items-center gap-1.5">
+                  <p className="text-xs font-mono text-teal-600 dark:text-teal-400 mb-4 flex items-center gap-1.5">
                     <Building2 className="w-3.5 h-3.5" />
                     <span>{project.organization}</span>
                   </p>
 
                   {/* Description */}
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
                     {project.description}
                   </p>
 
-                  {/* Bullet Highlights */}
+                  {/* Highlights */}
                   <div className="space-y-2.5 mb-6">
                     {project.highlights.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0 mt-0.5" />
                         <span>{point}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Footer: Tech Stack & Actions */}
-                <div className="pt-6 border-t border-slate-700/60 mt-auto">
+                {/* Footer */}
+                <div className="pt-6 border-t border-slate-200 dark:border-slate-800 mt-auto">
                   {/* Tech stack chips */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[11px] font-mono px-2.5 py-0.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700"
+                        className={`text-[11px] font-mono px-2.5 py-0.5 rounded-lg border ${
+                          isDark
+                            ? 'bg-slate-800/80 text-slate-300 border-slate-700'
+                            : 'bg-slate-100 text-slate-700 border-slate-200'
+                        }`}
                       >
                         {tech}
                       </span>
@@ -136,27 +112,28 @@ export default function Projects({ isDark }) {
                     <button
                       onClick={() => {
                         setSelectedDemoId(project.id);
-                        setShowPlayground(true);
                         const el = document.getElementById('playground-view');
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-teal-500 to-cyan-500 text-white hover:from-teal-600 hover:to-cyan-600 shadow-md shadow-teal-500/20 transition-all hover:scale-[1.02]"
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white shadow-sm transition-all"
                     >
                       <Play className="w-3.5 h-3.5" />
-                      <span>Launch Interactive Demo</span>
+                      <span>Test Live Interactive Demo</span>
                     </button>
 
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 border border-slate-700 transition-colors"
-                        title="View Source Code"
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                      </a>
-                    </div>
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`p-2.5 rounded-xl border transition-colors ${
+                        isDark
+                          ? 'bg-slate-800 text-slate-300 hover:text-white border-slate-700'
+                          : 'bg-slate-100 text-slate-700 hover:text-slate-900 border-slate-200'
+                      }`}
+                      title="View GitHub Repository"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -164,7 +141,7 @@ export default function Projects({ isDark }) {
           })}
         </div>
 
-        {/* Embedded Interactive Playground Section */}
+        {/* Embedded Interactive Demo Simulator */}
         <div id="playground-view" className="mt-8">
           <ProjectPlayground activeProject={selectedDemoId} />
         </div>

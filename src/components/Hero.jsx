@@ -1,270 +1,240 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ArrowRight,
   Download,
   Mail,
   MapPin,
-  Sparkles,
-  Terminal,
-  Database,
-  Code2,
-  Cpu,
-  Trophy,
   GraduationCap,
+  Trophy,
+  Award,
   Users,
-  CheckCircle2,
-  Layers,
+  Code2,
+  FileText,
+  Phone,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { resumeData } from '../data/resumeData';
+import sahilPhoto from '../assets/sahil.jpg';
 
 export default function Hero({ onOpenResume, isDark }) {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const roles = [
-    'Aspiring Software Engineer',
-    'MERN Stack Developer',
-    'Python & Data Analyst',
-    'MCA Scholar & Problem Solver',
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, [roles.length]);
-
-  const techBadges = [
-    { name: 'React.js', color: 'from-cyan-500/20 to-blue-500/20 text-cyan-400 border-cyan-500/30' },
-    { name: 'Node.js', color: 'from-emerald-500/20 to-teal-500/20 text-emerald-400 border-emerald-500/30' },
-    { name: 'Python', color: 'from-amber-500/20 to-yellow-500/20 text-amber-300 border-amber-500/30' },
-    { name: 'Java', color: 'from-orange-500/20 to-red-500/20 text-orange-400 border-orange-500/30' },
-    { name: 'MongoDB', color: 'from-green-500/20 to-emerald-500/20 text-green-400 border-green-500/30' },
-    { name: 'DSA', color: 'from-purple-500/20 to-indigo-500/20 text-purple-400 border-purple-500/30' },
-    { name: 'SQL', color: 'from-blue-500/20 to-indigo-500/20 text-blue-400 border-blue-500/30' },
+  const techPills = [
+    'React.js',
+    'Node.js',
+    'Express.js',
+    'MongoDB',
+    'Python',
+    'Java',
+    'SQL',
+    'DSA',
+    'Tailwind CSS',
   ];
 
   return (
-    <section id="hero" className="relative min-h-[90vh] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden">
-      {/* Subtle background glow orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-purple-500/10 dark:bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
-
+    <section
+      id="hero"
+      className="relative min-h-[90vh] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Information & Headline */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Left Column: Personal Intro & Bio */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left order-2 lg:order-1">
             
-            {/* Live Availability Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-teal-500/10 text-teal-400 border border-teal-500/30 mb-6 shadow-sm shadow-teal-500/10 animate-pulse-slow">
-              <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
-              <span className="w-2 h-2 rounded-full bg-teal-400 -ml-4" />
+            {/* Availability Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Available for Trainee Software Engineer / Full-Stack Roles</span>
             </div>
 
             {/* Main Greeting & Name */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-4">
-              Hi, I'm{' '}
-              <span className="text-gradient">
-                {resumeData.personal.name}
-              </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-slate-100 leading-tight mb-3">
+              Hi, I'm <span className="text-teal-600 dark:text-teal-400">{resumeData.personal.name}</span>
             </h1>
 
-            {/* Dynamic Animated Role Badge */}
-            <div className="h-10 mb-6 flex items-center">
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-xl bg-slate-800/60 dark:bg-slate-800/80 border border-slate-700/80 backdrop-blur-md">
-                <Terminal className="w-4 h-4 text-teal-400" />
-                <span className="font-mono text-sm sm:text-base font-semibold text-teal-300 transition-all duration-300">
-                  {roles[roleIndex]}
-                </span>
-              </div>
-            </div>
+            {/* Subtitle / Role */}
+            <p className="text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-300 mb-4">
+              Computer Science Graduate & MCA Scholar at SPPU, Pune
+            </p>
 
-            {/* Location & Key Info */}
-            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-400 mb-6">
+            {/* Location & Quick Education line */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-teal-500" />
+                <MapPin className="w-4 h-4 text-teal-600 dark:text-teal-400" />
                 <span>{resumeData.personal.location}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-cyan-400" />
-                <span>MCA Scholar (SPPU) & B.Sc CS Graduate</span>
+                <GraduationCap className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span>Modern College of Engineering (SPPU)</span>
               </div>
             </div>
 
-            {/* Summary Excerpt */}
-            <p className="text-base sm:text-lg text-slate-300 dark:text-slate-300/90 leading-relaxed max-w-2xl mb-8">
-              Passionate Computer Science graduate with hands-on experience building scalable web applications with the{' '}
-              <strong className="text-teal-400 font-semibold">MERN Stack</strong>, developing{' '}
-              <strong className="text-cyan-400 font-semibold">Python data analysis</strong> pipelines, and solving complex problems using{' '}
-              <strong className="text-indigo-400 font-semibold">Data Structures & Algorithms</strong>.
+            {/* Bio summary */}
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mb-8">
+              I build scalable, clean web applications and analytical pipelines. Experienced in the{' '}
+              <strong className="font-semibold text-slate-900 dark:text-white">MERN Stack</strong>,{' '}
+              <strong className="font-semibold text-slate-900 dark:text-white">Python data analysis</strong>, and{' '}
+              <strong className="font-semibold text-slate-900 dark:text-white">Data Structures & Algorithms</strong>.
+              Combining technical problem-solving with high-impact communication and disciplined leadership.
             </p>
 
-            {/* CTA Action Buttons */}
-            <div className="flex flex-wrap gap-4 items-center mb-10 w-full sm:w-auto">
+            {/* Primary Action Buttons */}
+            <div className="flex flex-wrap gap-3.5 items-center mb-9 w-full sm:w-auto">
               <a
                 href="#projects"
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-teal-500 via-teal-600 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-sm text-white bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
               >
-                <span>Explore Featured Projects</span>
+                <span>View Projects</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
                 href="#contact"
-                className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold border transition-all duration-300 w-full sm:w-auto ${
+                className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-sm border transition-all duration-200 w-full sm:w-auto ${
                   isDark
-                    ? 'bg-slate-800/80 text-slate-200 border-slate-700 hover:bg-slate-700/80 hover:text-white'
-                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:text-slate-900 shadow-sm'
+                    ? 'bg-slate-800/90 text-slate-200 border-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-600'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
-                <Mail className="w-4 h-4 text-teal-400" />
-                <span>Get In Touch</span>
+                <Mail className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span>Contact Me</span>
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-slate-300 hover:text-white border border-transparent hover:border-slate-700 transition-all duration-300 w-full sm:w-auto"
+                className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium text-sm border transition-all duration-200 w-full sm:w-auto ${
+                  isDark
+                    ? 'bg-slate-900/60 text-slate-300 border-slate-800 hover:bg-slate-800/80 hover:text-white'
+                    : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
+                }`}
               >
-                <Download className="w-4 h-4 text-teal-400" />
-                <span>Resume Preview</span>
+                <FileText className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                <span>View Resume</span>
               </button>
             </div>
 
-            {/* Tech Stack Chips */}
-            <div className="w-full">
-              <div className="text-xs uppercase tracking-wider font-mono text-slate-400 mb-3 flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-teal-400" />
-                <span>Primary Arsenal:</span>
-              </div>
+            {/* Tech Stack Pills */}
+            <div className="w-full pt-6 border-t border-slate-200 dark:border-slate-800">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 block">
+                Core Technologies & Tools
+              </span>
               <div className="flex flex-wrap gap-2">
-                {techBadges.map((tech) => (
+                {techPills.map((tech) => (
                   <span
-                    key={tech.name}
-                    className={`text-xs font-mono font-medium px-3 py-1 rounded-lg border bg-gradient-to-r ${tech.color} backdrop-blur-sm transition-transform hover:scale-105`}
+                    key={tech}
+                    className={`text-xs px-3 py-1 rounded-lg border font-mono ${
+                      isDark
+                        ? 'bg-slate-800/60 text-slate-300 border-slate-700/80'
+                        : 'bg-slate-100 text-slate-700 border-slate-200'
+                    }`}
                   >
-                    {tech.name}
+                    {tech}
                   </span>
                 ))}
               </div>
             </div>
+
           </div>
 
-          {/* Right Column: Key Distinction & Interactive Showcase Card */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
-            
-            {/* Main Interactive Profile Showcase Card */}
-            <div className="relative p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-800/70 to-slate-900/90 border border-slate-700/60 backdrop-blur-xl shadow-2xl overflow-hidden group">
-              
-              {/* Card top banner */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-700/60">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400/80" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
-                  <span className="text-xs font-mono text-slate-400 ml-2">sahil.profile.tsx</span>
-                </div>
-                <span className="text-xs font-mono text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/30">
-                  Ready to Deploy
-                </span>
-              </div>
-
-              {/* Distinction Stat Grid */}
-              <div className="grid grid-cols-2 gap-3.5 mb-5">
+          {/* Right Column: Authentic Photo & Personal Card */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end order-1 lg:order-2">
+            <div
+              className={`w-full max-w-sm rounded-2xl border p-4 sm:p-5 transition-all ${
+                isDark
+                  ? 'bg-slate-900/90 border-slate-800 shadow-xl'
+                  : 'bg-white border-slate-200 shadow-lg'
+              }`}
+            >
+              {/* Photo Frame */}
+              <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-slate-200 dark:bg-slate-800 mb-4 border border-slate-200 dark:border-slate-700/60">
+                <img
+                  src={sahilPhoto}
+                  alt="Sahil Kshirsagar"
+                  className="w-full h-full object-cover object-center"
+                />
                 
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/50 hover:border-teal-500/40 transition-colors">
-                  <div className="flex items-center gap-2 text-teal-400 mb-1">
-                    <Trophy className="w-4 h-4 text-amber-400" />
-                    <span className="text-xs font-bold font-mono">AIR-3 (National)</span>
+                {/* Subtle Overlay Caption */}
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-white">
+                  <div className="font-semibold text-base">Sahil Kshirsagar</div>
+                  <div className="text-xs text-slate-200">Software Developer • Pune, India</div>
+                </div>
+              </div>
+
+              {/* Distinction Highlights Under Photo */}
+              <div className="grid grid-cols-2 gap-2.5 mb-4">
+                
+                <div
+                  className={`p-2.5 rounded-xl border flex items-center gap-2.5 ${
+                    isDark
+                      ? 'bg-slate-800/60 border-slate-700/60'
+                      : 'bg-slate-50 border-slate-200'
+                  }`}
+                >
+                  <Trophy className="w-4 h-4 text-amber-500 shrink-0" />
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 dark:text-slate-100">AIR-3</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">All India NCC Camp</div>
                   </div>
-                  <p className="text-[11px] text-slate-300 font-medium">All India Thal Sainik Camp (NCC)</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/50 hover:border-teal-500/40 transition-colors">
-                  <div className="flex items-center gap-2 text-teal-400 mb-1">
-                    <GraduationCap className="w-4 h-4 text-cyan-400" />
-                    <span className="text-xs font-bold font-mono">7.05 GPA</span>
+                <div
+                  className={`p-2.5 rounded-xl border flex items-center gap-2.5 ${
+                    isDark
+                      ? 'bg-slate-800/60 border-slate-700/60'
+                      : 'bg-slate-50 border-slate-200'
+                  }`}
+                >
+                  <Award className="w-4 h-4 text-teal-500 shrink-0" />
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 dark:text-slate-100">7.05 GPA</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">B.Sc. in Comp Sci</div>
                   </div>
-                  <p className="text-[11px] text-slate-300 font-medium">B.Sc. in Computer Science</p>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/50 hover:border-teal-500/40 transition-colors">
-                  <div className="flex items-center gap-2 text-teal-400 mb-1">
-                    <Sparkles className="w-4 h-4 text-purple-400" />
-                    <span className="text-xs font-bold font-mono">Student of Year</span>
-                  </div>
-                  <p className="text-[11px] text-slate-300 font-medium">Dr. Ambedkar College (2024)</p>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/50 hover:border-teal-500/40 transition-colors">
-                  <div className="flex items-center gap-2 text-teal-400 mb-1">
-                    <Users className="w-4 h-4 text-emerald-400" />
-                    <span className="text-xs font-bold font-mono">Vice President</span>
-                  </div>
-                  <p className="text-[11px] text-slate-300 font-medium">Rotaract Club of Nagpur</p>
                 </div>
 
               </div>
 
-              {/* Code Snippet Preview */}
-              <div className="p-3.5 rounded-xl bg-[#090d16] border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
-                <div className="text-slate-500">// Software Engineer Candidate</div>
-                <div>
-                  <span className="text-purple-400">const</span> <span className="text-teal-300">engineer</span> = &#123;
-                </div>
-                <div className="pl-4">
-                  name: <span className="text-emerald-300">'Sahil Kshirsagar'</span>,
-                </div>
-                <div className="pl-4">
-                  education: <span className="text-emerald-300">'MCA @ SPPU | B.Sc CS'</span>,
-                </div>
-                <div className="pl-4">
-                  focus: [<span className="text-amber-300">'MERN'</span>, <span className="text-amber-300">'Python'</span>, <span className="text-amber-300">'DSA'</span>],
-                </div>
-                <div className="pl-4">
-                  discipline: <span className="text-cyan-300">'National NCC Ranker (AIR-3)'</span>,
-                </div>
-                <div className="pl-4">
-                  hireReady: <span className="text-teal-400">true</span>
-                </div>
-                <div>&#125;;</div>
-              </div>
-
-              {/* Social Quick Links */}
-              <div className="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
-                <div className="flex items-center gap-3">
-                  <a
-                    href="mailto:sahilkshirsagar456@gmail.com"
-                    className="hover:text-teal-400 transition-colors flex items-center gap-1"
-                    title="Send Email"
-                  >
-                    <Mail className="w-3.5 h-3.5 text-teal-400" />
-                    <span>sahilkshirsagar456@gmail.com</span>
-                  </a>
-                </div>
+              {/* Direct Quick Links Bar */}
+              <div className="flex items-center justify-between pt-3 border-t border-slate-200 dark:border-slate-800 text-xs">
                 <div className="flex items-center gap-2">
                   <a
-                    href="https://linkedin.com"
+                    href="mailto:sahilkshirsagar456@gmail.com"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                    title="Email Sahil"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="tel:9049090996"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                    title="Call or WhatsApp"
+                  >
+                    <Phone className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={resumeData.personal.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800 hover:text-white hover:bg-slate-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                    title="LinkedIn"
                   >
                     <LinkedinIcon className="w-4 h-4" />
                   </a>
                   <a
-                    href="https://github.com"
+                    href={resumeData.personal.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800 hover:text-white hover:bg-slate-700 transition-colors"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                    title="GitHub"
                   >
                     <GithubIcon className="w-4 h-4" />
                   </a>
                 </div>
+
+                <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">
+                  ● Pune, MH
+                </span>
               </div>
 
             </div>
-
           </div>
 
         </div>
